@@ -1,0 +1,16 @@
+pipeline {
+  agent any
+  stages {
+    stage('verify k6') {
+      steps {
+        sh 'k6 version'
+      }
+    }
+    stage('run k6 test') {
+      steps {
+        sh 'k6 run --vus 10 --duration 30s --out influxdb=http://jugnu:vID--bHMLOQNcds5N9LasJrjLmUe89o06KGDBEDF4ipszcyyuExUXt-dUZxekMVhO-ZSKzzPNUF7BSNlXJIjnw==@172.17.0.2:8086/jugnu script.js'
+
+      }
+    }
+  }
+}
